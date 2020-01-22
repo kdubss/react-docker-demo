@@ -2,6 +2,7 @@ version: '3'
 
 services:
 
+  # Frontend client-service container
   client:
     build:
       context: .
@@ -11,3 +12,14 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
+
+  # Testing Service container
+  tests:
+    build:
+      # Run tests in current directory (i.e. /app in container)
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
