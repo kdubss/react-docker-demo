@@ -1,9 +1,10 @@
+language: generic
+
 sudo: required
 
 services:
   - docker
 
-language: generic
 before_install:
   - docker build -t kdubss/react-docker-demo -f Dockerfile.dev .	
   
