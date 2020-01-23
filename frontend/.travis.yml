@@ -1,4 +1,6 @@
-language: generic
+language: node_js
+nvm:
+  - 12.13.1
 
 sudo: required
 
