@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # primary container on circle-ci
-      - image: circleci/node:alpine
+      - image: node:alpine
     steps:
       - checkout
 
@@ -11,9 +11,16 @@ jobs:
           version: 19.03.5
 
       - run:
-          name: Install Docker client
-          command: apk add docker-cli
+        name: Install Docker Compose
+        command: |
+          curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+          chmod +x ~/docker-compose
+          sudo mv ~/docker-compose /`usr/local/bin/docker-compose
 
-      - run: |
-          docker build -t client -f Dockerfile.dev .
-          docker run -p 3000:3000 client
+      - run:
+        name: Start container and verify it is working
+        command: |
+          set -x
+          docker-compose up -d
+          docker run --network container:contacts \
+            appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:3000/
