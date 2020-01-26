@@ -26,6 +26,6 @@ jobs:
       - run:
           name: Build docker image to run test
           command: |
-            docker build -t kdubss/react-docker-demo -f Dockerfile.dev
+            docker build -t kdubss/react-docker-demo -f Dockerfile.dev .
             docker run kdubss/react-docker-demo npm run test
       
