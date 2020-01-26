@@ -1,26 +1,19 @@
 version: 2
-
 jobs:
-
   build:
     docker:
-      - image: circleci/node:12.14.1
-
-    working_directory: ~/repo
-
+      # primary container on circle-ci
+      - image: circleci/node:alpine
     steps:
       - checkout
-      
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      
-      - run: yarn install
 
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum: "package.json" }}
+      - setup_remote_docker:
+        version: 19.03.5
 
-      - run: yarn test
+      - run:
+          name: Install Docker client
+          ommand: apk add docker-cli
+
+      - run: |
+          docker build -t client -f Dockerfile.dev .
+          docker run -p 3000:3000 client
