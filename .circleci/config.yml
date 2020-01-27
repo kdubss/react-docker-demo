@@ -9,4 +9,6 @@ jobs:
       - setup_remote_docker:
 
       - run:
-          echo 'Running Circle-CI!'
+          name: Setup Docker
+          command: |
+            docker build -t test -f Dockerfile.dev .
