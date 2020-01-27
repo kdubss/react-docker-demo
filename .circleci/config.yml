@@ -6,6 +6,7 @@ jobs:
     
     docker:
       - image: docker:17.05.0-ce-git
+      - image: circleci/node
 
     steps:
       - checkout
@@ -17,7 +18,7 @@ jobs:
             npm install \
               docker-compose \
               awscli
-      
+
       - restore_cache:
           keys:
             - v1-{{ .Branch }}
