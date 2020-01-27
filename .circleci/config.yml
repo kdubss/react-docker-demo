@@ -5,7 +5,7 @@ jobs:
     working_directory: /app
     
     docker:
-      - image: node:11.10.1
+      - image: circleci/node
 
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
           command: |
             npm install \
               docker-compose \
-              awscli
+              aws-cli
 
       - restore_cache:
           keys:
