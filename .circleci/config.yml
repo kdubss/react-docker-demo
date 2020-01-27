@@ -8,24 +8,5 @@ jobs:
 
       - setup_remote_docker:
 
-      # - run:
-      #     name: Install Docker Compose
-      #     command: |
-      #       curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-      #       chmod +x ~/docker-compose
-      #       sudo mv ~/docker-compose /usr/local/bin/docker-compose
-
-      # - run:
-      #     name: Start container and verify it is working
-      #     command: |
-      #       set -x
-      #       docker-compose up -d
-      #       docker run --network container:contacts \
-      #         appropriate/curl --retry 10 --retry-delay 1 --retry-connrefused http://localhost:3000/
-
       - run:
-          name: Build docker image to run test
-          command: |
-            docker build -t kdubss/react-docker-demo -f Dockerfile.dev .
-            docker run kdubss/react-docker-demo npm run test
-      
+          echo 'Running Circle-CI!'
