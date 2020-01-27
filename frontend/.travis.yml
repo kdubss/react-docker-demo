@@ -1,4 +1,5 @@
 language: generic 
+
 sudo: required
 
 services:
@@ -8,4 +9,4 @@ before_install:
   - docker build -t kdubss/react-docker-demo -f Dockerfile.dev .	
   
 script:
-  - docker run -e CI=true kdubss/react-docker-demo npm run test -- --coverage
+  - docker run -e CI=true kdubss/react-docker-demo npm run test
