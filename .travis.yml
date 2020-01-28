@@ -11,16 +11,13 @@ script:
   - docker run -e CI=true kdubss/react-docker-demo npm run test -- --coverage
 
 deploy:
-  edge: true
   provider: elasticbeanstalk
-  access_key_id:
-    secure: sIrGVw9iIZutMa6u2UtS9Ybam/vbkr9XCySpTnur1lW8dCy7kBGKv+rbXiorUWY9cLZKFu9hOGksPPhGI9UjTJDQsxzvTVw0aVRkDA0Lxwne6oR5VcXaUtoSDa21Bo4mTNcDbqiWyLHnHpygzVjI8l9kw7cMtl5e5uATwjPnHA6Qej0drYfr7obDQoyxbE1JObI8ki1hls3iIsOl/lWAiFYu7GlGakv8BbnraTQT+12rYB2kqqMuiFoIg6j8PpMPLIC2sn5/kkx1Ra0yAmSTr+z0WSOTraTIwnEGSLvuR4PW4bg33UpJhr2FS2cMz7Q0UtSknQtcxjuETbyr+t/2rFMHknsWkAg1T4dxkj0QcIGw31XMEpcmrd55rS6qOReK0szDDP9ZcbcaIAqoghQt1r0rLFtem/5+4pBpFegfIlGGmMWfSstpTpmywNg2j0aR73NrrdpXyH6qvpvmPIcnd3FmPkhiYqKHIsLvD4VA2IG8k0vOWBhA+cOVUX+GZ8JpKXsWDUnOI3AvsK3VKN2+pD1sdjkOkXkbSsONF/+HlpvbXYQqi7dzReI7A8XrBBNCGku77lh2g1wh435g1DqGYYRGD/JF628Jh39bvBfafY/DZCeqIVuE+XzpDjX+dGxRInVcDaHkISSbrNZBqq8wojlN33K6NShf1Iihtdu+HJw=
-  secret_access_key:
-    secure: coxJkEuckWHLpCA/9qr4tHbUWT/DM6O3pGq0nornPpYNOM102vrKizhQyYDZbS29QLBSMRIT06vujylNHEVRYJB8ZVZBdoyiuZb6D2eyAIdRzMJxAX6DdgMoFMQqVKuL3sIsT++hP0lX+iujHL0t8/n/WjCxR56Xe+j4esakbV+Zz5rdOlVbBNrh17mBcXDExjQB7FXCtg/AQL6VgyMX8yqRJxIqaQ4AcBYlm81vyhRUp2c166Li7J+L0hUghS7s3L7csLRHf7uExD2QaXmpLEuYwyAzb76Uw3S1k4JoWUsDkOs9gFGSNEdXZAHfy/F0wDYVtkkAUhytrabHe4TqoJr1lRnukuWTlauAso2zK8P+djWOOzKsF0nHkm4YS/ZCbWMlz9ewK2ok2WNO1/7nSM1Ra0uUxbJl2kzrqLKMW+A+xFLRBGm5N7suGdPEgQPityMR65MfClvzJy9NG9IznLIyroB9MnL34CQ995VzM+kSXYgs+jjkLOJSJ5vU6/Tx8i7b+j3uuaD3tqf9x5xsRtBVVhSZVwYHvj+EJGkRRkyXZ5x8CcSLRdPJYARzXodgN2ExUBEYXYSxmxq593ldWk/8UgrF8rB/yx1ElNhMInhCvI/dMwg93mByPD4S3WZP4P3p5rRR+I2RY4aC+/SohWpMKkqBavI9aGlere9XsNI=
-  region: us-east-1
-  app: docker-react
-  env: DockerReact-env
-  bucket_name: elasticbeanstalk-us-east-1-627511531524
-  bucket_path: docker-react
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  region: "us-east-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-627511531524"
+  bucket_path: "docker-react"
   on:
     branch: master
