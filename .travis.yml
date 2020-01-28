@@ -10,6 +10,9 @@ before_install:
 script:
   - docker run -e CI=true kdubss/react-docker-demo npm run test -- --coverage
 
+before_deploy: "echo 'Starting deployment to Elastic Beanstalk!'"
+after_deploy: "echo 'Successfully deployed to Elastic Beanstalk!'"
+
 deploy:
   provider: elasticbeanstalk
   access_key_id: 
