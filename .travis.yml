@@ -5,24 +5,28 @@ services:
   - docker
 
 before_install:
+  - "echo '>>> Building Docker image <<<'"
   - docker build -t kdubss/react-docker-demo -f Dockerfile.dev .
 
 script:
+  - "echo '>>> Running Tests <<<'"
   - docker run -e CI=true kdubss/react-docker-demo npm run test -- --coverage
 
-before_deploy: "echo 'Starting deployment to Elastic Beanstalk!'"
-after_deploy: "echo 'Successfully deployed to Elastic Beanstalk!'"
+before_deploy: 
+  - "echo '>>> Starting deployment to Elastic Beanstalk <<<'"
+after_deploy: 
+  - "echo '>>> Successfully deployed to Elastic Beanstalk <<<'"
 
 deploy:
   provider: elasticbeanstalk
   access_key_id: 
-    secure: $AWS_ACCESS_KEY
+    secure: "$AWS_ACCESS_KEY"
   secret_access_key:
-    secure: $AWS_SECRET_KEY
+    secure: "$AWS_SECRET_KEY"
   region: "us-east-1"
-  app: "docker-react-demo"
-  env: "DockerReactDemo-env"
-  bucket_name: "elasticbeanstalk-us-east-1-627511531524"
-  bucket_path: "docker-react-demo"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-577826437571"
+  bucket_path: "docker-react"
   on:
     branch: master
